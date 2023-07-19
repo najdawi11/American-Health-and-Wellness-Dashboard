@@ -45,9 +45,16 @@ Role Assignments:
 
 
 Lead Developer: Masoud
+
 Overall Design, Structure, and Implementation
+
+
 Git Master – Nathir (Thursday)
+
+
 Set-up Master Repo
+
+
 Settings: Collaborators:
 
 Edwin
@@ -57,12 +64,26 @@ Nathir
 
 README
 Git Pages
+
+
 Database Engineering: Edwin & Ronald
+
+
 ETL
+
+
 Database Development (MySQL)
+
+
 Flask (Nathir – Backup Dev)
+
+
 Front-End Development Team: Nathir, Edwin, Ronald, Masoud,
+
+
 User-Interface and Design (Figma front-end design)
+
+
 Javascript, CSS (bootstrap), HTML
 
 
