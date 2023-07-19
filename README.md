@@ -1,7 +1,7 @@
 # American-Health-and-Wellness-Dashboard
 
 
-LINK TO OUR REPP :  https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
+LINK TO OUR REPPO :  https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
 
 
 Group 4 Proposal (American Health and Wellness Dashboard)
