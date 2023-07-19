@@ -71,34 +71,15 @@ Database Engineering: Edwin & Ronald
 
 ETL
 
-
 Database Development (MySQL)
-
 
 Flask (Nathir – Backup Dev)
 
-
 Front-End Development Team: Nathir, Edwin, Ronald, Masoud,
-
 
 User-Interface and Design (Figma front-end design)
 
-
 Javascript, CSS (bootstrap), HTML
-
-
-
-
-
-
-
-
-
-
-
-Message Anthony Taylor, Edwin Edmondson, Kevin Nguyen, Masoud Yousefi, Ronald Alfelor, Wei Wu
-
-
 
 
 
