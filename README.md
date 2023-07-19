@@ -5,7 +5,10 @@ LINK TO OUR REPP :  https://najdawi11.github.io/American-Health-and-Wellness-Das
 
 
 Group 4 Proposal (American Health and Wellness Dashboard)
+
 Dataset:
+
+
 *2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Future Use)
 2018 & 2019: https://data.cdc.gov/resource/373s-ayzu.json
  2020: https://data.cdc.gov/resource/nw2y-v4gm.json
@@ -23,10 +26,13 @@ Lead Developer: Masoud
 Overall Design, Structure, and Implementation
 Git Master – Nathir (Thursday)
 Set-up Master Repo
-Settings: Collaborators
-edmondsonedwin@gmail.com
-m1365y@gmail.com
-ronaldfelixalfelor1980@gmail.com
+Settings: Collaborators:
+
+Edwin
+Masoud
+Ronald
+Nathir 
+
 README
 Git Pages
 Database Engineering: Edwin & Ronald
