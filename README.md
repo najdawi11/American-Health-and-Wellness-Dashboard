@@ -36,7 +36,11 @@ Healthcare and Mental Health Resource Needs:
 
 
 Insurance levels across the United States (create a dashboard that allows users to see the various areas of the US that have coverage and the density of coverage).
+
+
 Display general healthcare & mental health trends across the US.
+
+
 Role Assignments:
 
 
