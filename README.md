@@ -10,7 +10,11 @@ Dataset:
 
 
 *2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Future Use)
+
+
 2018 & 2019: https://data.cdc.gov/resource/373s-ayzu.json
+
+
  2020: https://data.cdc.gov/resource/nw2y-v4gm.json
 
 
