@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My MongoDB Data</title>
+</head>
+<body>
+    <h1>My MongoDB Data</h1>
+    <ul id="data-list"></ul>
+
+    <script>
+        fetch('/api/data')
+            .then(response => response.json())
+            .then(data => {
+                const dataList = document.getElementById('data-list');
+                data.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${item.field1} - ${item.field2} - ${item.field3}`;
+                    dataList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
