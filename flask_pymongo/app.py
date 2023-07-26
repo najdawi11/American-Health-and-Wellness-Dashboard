@@ -1,8 +1,11 @@
 from flask import Flask, render_template, jsonify
 from bson import json_util
 from pymongo import MongoClient
-
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 client = MongoClient('mongodb://localhost:27017/')
 db = client['Project3']
 collection = db['data1']
