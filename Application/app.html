@@ -1,13 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Health</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Health Dashboard</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="des.css" />
+
+
 </head>
 <body>
-  <h1>American</h1>
+
+  <!-- <div id="map"></div>
+
+    <!-- Load Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+     -->
+
+    
+    
+            <!-- Optional content for the sidebar
+            <p>Information and Data Here</p>
+            <p>More Content</p> -->
+         
+   
+
+
+	<!-- <center> <font color="#800080"> <h1>American Health Informatics Dashboard</h1></font>  </center> -->
   <script src='app.js' ></script>
+  <div class="container">
+    <div class="sidebar">
+      <button class="button" onclick="showContent(1)">Button 1</button>
+      <button class="button" onclick="showContent(2)">Button 2</button>
+      <button class="button" onclick="showContent(3)">Button 3</button>
+      <button class="button" onclick="showContent(4)">Button 4</button>
+      <button class="button" onclick="showContent(5)">Button 5</button>
+    </div>
+    <div class="sidebar">
+      <button class="button" onclick="showContent(6)">Button 6</button>
+      <button class="button" onclick="showContent(7)">Button 7</button>
+      <button class="button" onclick="showContent(8)">Button 8</button>
+      <button class="button" onclick="showContent(9)">Button 9</button>
+      <button class="button" onclick="showContent(10)">Button 10</button>
+    </div>
+    <div class="content" id="content">
+      <h2>Content</h2>
+      <p>This section displays the content based on the clicked button.</p>
+    </div>
+  </div>
+
+<div id="map-container">
+    <h2>United States Map</h2>
+    <div id="map"></div>
+</div>
+
+  <script>
+    function showContent(buttonId) {
+      let contentDiv = document.getElementById("content");
+      switch (buttonId) {
+        case 1:
+          contentDiv.innerHTML = "<h2>Button 1 Content</h2><p>This is the content of Button 1.</p>";
+          break;
+        case 2:
+          contentDiv.innerHTML = "<h2>Button 2 Content</h2><p>This is the content of Button 2.</p>";
+          break;
+        case 3:
+          contentDiv.innerHTML = "<h2>Button 3 Content</h2><p>This is the content of Button 3.</p>";
+          break;
+        case 4:
+          contentDiv.innerHTML = "<h2>Button 4 Content</h2><p>This is the content of Button 4.</p>";
+          break;
+        case 5:
+          contentDiv.innerHTML = "<h2>Button 5 Content</h2><p>This is the content of Button 5.</p>";
+          break;
+        case 6:
+          contentDiv.innerHTML = "<h2>Button 6 Content</h2><p>This is the content of Button 6.</p>";
+          break;
+        case 7:
+          contentDiv.innerHTML = "<h2>Button 7 Content</h2><p>This is the content of Button 7.</p>";
+          break;
+        case 8:
+          contentDiv.innerHTML = "<h2>Button 8 Content</h2><p>This is the content of Button 8.</p>";
+          break;
+        case 9:
+          contentDiv.innerHTML = "<h2>Button 9 Content</h2><p>This is the content of Button 9.</p>";
+          break;
+        case 10:
+          contentDiv.innerHTML = "<h2>Button 10 Content</h2><p>This is the content of Button 10.</p>";
+          break;
+        default:
+          contentDiv.innerHTML = "<h2>Default Content</h2><p>This content is displayed when no button is clicked.</p>";
+          break;
+      }
+    }
+  </script>
 </body>
 </html>
+
+
