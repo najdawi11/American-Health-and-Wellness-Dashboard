@@ -1,126 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
   <title>American Health Dashboard</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  ​
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <link rel="stylesheet" href="des.css" />
   <script src='logic.js'></script>
-
-
-  ​
-  ​
-  ​
-  ​
-  ​
-  ​
-
-
-  <!-- <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-    .container {
-      display: flex;
-      height: 90%;
-    }
-   
-
-    .sidebar {
-      width: 15%;
-      background-color: #f0f0f0;
-       display: flex; 
-      flex-direction: column;
-      align-items: center;
-    }
-    .content {
-      width: 100%;
-      background-color: #fff;
-      align-items: left
-    }
-    .button {
-      padding: 10px 20px;
-      margin: 5px;
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-    }
-  </style> -->
-=======
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>American Health Dashboard</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  
-  
->>>>>>> d3fab5e0428aff4c180cfbbc5b0d4d69a81b4dd8
 </head>
-
 <body>
-<<<<<<< HEAD
-  ​
-  <!-- <div id="map"></div>
-​
-    
-     
-​
-    
-    
-            <!-- Optional content for the sidebar
-            <p>Information and Data Here</p>
-            <p>More Content</p> -->
-
-
-  ​
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  ​
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <!-- </h1><center> <font color="#800080"> <h1>American Health Informatics Dashboard</h1></font>  </center>  -->
- 
-
-  <!-- <script src='logic.js' ></script>  -->
-
-
-
-
-
-
-
-
-
-
-  <!-- <script>
-
-  
-    // Get the JSON data from the server-side variable 'data_json'
-    const jsonData = { data  };  // This will output the JSON data as a JavaScript object
-
-    // Parse the JSON data into a JavaScript object
-    const data = JSON.parse(jsonData);
-
-    // ... Rest of your Chart.js code remains the same ... -->
-  <!-- </script> -->
-
-
-
-
-
-
-
-
-
-
   <div class="container">
-    <div class="sidebar">
+    <!-- <div class="sidebar">
       <button class="button" onclick="showContent(1)" style="width: 150px;">HBP</button>
       <button class="button" onclick="showContent(2)" style="width: 150px;">Diabetes</button>
       <button class="button" onclick="showContent(3)" style="width: 150px;">Cancer</button>
@@ -133,20 +26,15 @@
       <button class="button" onclick="showContent(8)" style="width: 150px;">Stroke</button>
       <button class="button" onclick="showContent(9)" style="width: 150px;">High Cholesterol</button>
       <button class="button" onclick="showContent(10)" style="width: 150px;">Analysis</button>
-    </div>
+    </div> -->
     <div id="map-container">
-      <h2>United States Map</h2>
+      <h2>Health Map</h2>
       <div id="map"></div>
       <div id="map" style="width: 800px; height: 600px;"></div>
       <div class="content" id="content">
-
-        <h2>Content</h2>
+        <h2>Metadata for Health Conditions</h2>
         <p>This section displays the content based on the clicked button.</p>
       </div>
-      ​
-      ​
-      ​
-      ​
       <script>
         function showContent(buttonId) {
           let contentDiv = document.getElementById("content");
@@ -192,14 +80,6 @@
               break;
           }
         }
-
-
-
       </script>
-=======
-  <h1>American Health Informatics Dashboard</h1>
-  <script src='app.js' ></script>
->>>>>>> d3fab5e0428aff4c180cfbbc5b0d4d69a81b4dd8
 </body>
-
 </html>
