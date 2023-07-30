@@ -1,11 +1,16 @@
 
   /* Set the overall page layout using flexbox */
   body, html {
-      height: 100%;
-      margin: 0;
-      display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100%;
   }
-  
+
+  .container {
+    display: flex;
+    height: 90%;
+  }
+
   .sidebar {
             width: 30%;
             background-color: #f0f0f0;
@@ -15,6 +20,20 @@
             padding: 20px;
         }
 
+  .content {
+  width: 100%;
+  background-color: #fff;
+  align-items: left
+}
+.button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}      
   /* Style for the map container */
   #map-container {
       display: flex;
@@ -33,32 +52,4 @@
 
 
 
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  .container {
-    display: flex;
-    height: 100%;
-  }
-  .sidebar {
-    width: 30%;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .content {
-    width: 70%;
-    background-color: #fff;
-  }
-  .button {
-    padding: 30px 50px;
-    margin: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-  }
+  
