@@ -1,16 +1,22 @@
 from flask import Flask, render_template, jsonify
 from bson import json_util
 from pymongo import MongoClient
+<<<<<<< HEAD
 import pandas as pd
 import pprint
+=======
+>>>>>>> d3fab5e0428aff4c180cfbbc5b0d4d69a81b4dd8
 from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+<<<<<<< HEAD
 
 # cors = CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5502"}})
 
+=======
+>>>>>>> d3fab5e0428aff4c180cfbbc5b0d4d69a81b4dd8
 client = MongoClient('mongodb://localhost:27017/')
 db = client['Project3']
 collection = db['data1']
