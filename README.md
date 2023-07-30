@@ -7,7 +7,7 @@ https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
 **Group 4 Proposal (American Health and Wellness Dashboard)**
 
 **Dataset:**
-*2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Potential Future Use)
+2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Potential Future Use)
 2018 & 2019: https://data.cdc.gov/resource/373s-ayzu.json
 2020: https://data.cdc.gov/resource/nw2y-v4gm.json
 
