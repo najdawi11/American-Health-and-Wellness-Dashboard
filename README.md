@@ -1,86 +1,41 @@
-# American-Health-and-Wellness-Dashboard
+**American Health and Wellness Dashboard**
+
+**Repo Link: ** 
+https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
 
 
-LINK TO OUR REPPO :  https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
+**Group 4 Proposal (American Health and Wellness Dashboard)**
 
-
-Group 4 Proposal (American Health and Wellness Dashboard)
-
-Dataset:
-
-
-*2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Future Use)
-
-
+**Dataset:**
+*2016 & 2017: https://data.cdc.gov/resource/6vp6-wxuq.json (Potential Future Use)
 2018 & 2019: https://data.cdc.gov/resource/373s-ayzu.json
+2020: https://data.cdc.gov/resource/nw2y-v4gm.json
+
+**# Instructions**
 
 
- 2020: https://data.cdc.gov/resource/nw2y-v4gm.json
+**Problem-Statement:**
+The United States faces a critical physician shortage crisis, exacerbated by a pattern where a significant number of physicians in residency programs are predominantly matched to highly populated regions and larger hospitals. As a consequence, this distribution of physicians creates systemic gaps in healthcare access and delivery, leaving various areas across the country, including [specify relevant regions], underserved and struggling to meet the healthcare needs of their communities.
+
+**Goal of Project: **
+The primary goal of this project is to map and analyze healthcare-related data across different states in the United States, aiming to create a comprehensive overview of general health conditions and identify physician shortages in various regions. By utilizing data mapping techniques and advanced analytics, the project aims to:
+
+ 1. Assess General Health Conditions: Gather and analyze various health indicators, such as disease prevalence and key public health metrics, to understand the overall health status of different states.
+ 2. Identify Healthcare Disparities: Examine healthcare access and delivery disparities across regions, highlighting areas with limited physician availability and inadequate healthcare infrastructure.
+ 3. Quantify Physician Shortages: Utilize data on resident physicians' distribution and regional healthcare demands to identify states and specific areas facing severe shortages of qualified healthcare professionals. (Final Project Implementation)
+ 4. Support Healthcare Policy Development: Provide evidence-based insights to inform policymakers and stakeholders about the pressing need for healthcare reforms and resource allocation to address the identified gaps.
+
+**Tech Stack:**
 
 
- # Instructions
- 
-Goal of Project: Using multi-year health data from the CDC to create visuals for the data.
 
+**Role Assignments:**
 
-Ideas:
-Problem-Statement:
-
-
-Visualization of the data are currently focused towards simple monitoring and tracking. This presents a unique challenge for visualization and interactivity; the new dashboard will solve for this by providing:
-Improved Interactivity and data insights.
-Improved trend visualization featuring heat-mapping for data.
-
-
-Healthcare and Mental Health Resource Needs:
-
-
-Insurance levels across the United States (create a dashboard that allows users to see the various areas of the US that have coverage and the density of coverage).
-
-
-Display general healthcare & mental health trends across the US.
-
-
-Role Assignments:
-
-
-Lead Developer: Masoud
-
-Overall Design, Structure, and Implementation
-
-
-Git Master – Nathir (Thursday)
-
-
-Set-up Master Repo
-
-
-Settings: Collaborators:
-
-Edwin
-Masoud
-Ronald
-Nathir 
-
-README
-Git Pages
-
-
-Database Engineering: Edwin & Ronald
-
-
-ETL
-
-Database Development (MySQL)
-
-Flask (Nathir – Backup Dev)
-
-Front-End Development Team: Nathir, Edwin, Ronald, Masoud,
-
-User-Interface and Design (Figma front-end design)
-
-Javascript, CSS (bootstrap), HTML
-
+Project Manager: Edwin
+Lead Developer: Masoud 
+Git Master & Developer: Nathir
+Data Engineers: Ronald & Edwin
+UI/UX: Entire Team
 
 
 
