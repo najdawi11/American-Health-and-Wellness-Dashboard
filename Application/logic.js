@@ -63,11 +63,11 @@ function updateMapMarkers(data) {
 function createMapMarkers(data) {
     data.forEach(item => {
         const { coordinates } = item.geolocation;
-        const { measure, category, data_value, data_value_type, data_value_unit } = item;
+        const { measure, statedesc, countyname, category, data_value, data_value_type, data_value_unit } = item;
         const lat = coordinates[1];
         const lng = coordinates[0];
         const marker = L.marker([lat, lng]).addTo(map).bindPopup(
-            `<b>${measure}</b><br>${category}<br>Value: ${data_value} ${data_value_type} (${data_value_unit})`
+            `<b>${measure}</b><br>${category}<br><br>Value: ${data_value} ${data_value_type} (${data_value_unit}<br><br>${countyname}<br><br>${statedesc}<br>`
         );
     });
 }
