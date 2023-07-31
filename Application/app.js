@@ -2,7 +2,6 @@ url = 'http://127.0.0.1:5000/api/data'
 <<<<<<< HEAD
 =======
 
->>>>>>> d3fab5e0428aff4c180cfbbc5b0d4d69a81b4dd8
 d3.json(url).then(function(data){
     console.log(data);
 
