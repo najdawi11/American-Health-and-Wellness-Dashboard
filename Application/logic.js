@@ -1,608 +1,106 @@
-url = "http://127.0.0.1:5000/api/data"
+const url = "http://127.0.0.1:5000/api/data";
 
-d3.json(url).then(function(data){
-    console.log(data);
+// Pull data from Flask API
+d3.json(url).then(function (data) {
+    populateDropdownAndDisplayData(data); // Call the function after fetching data.
 });
 
-let kidneyData =[];
-d3.json(url).then(function(data) {
+// Create the dropdown with d3 and populate with data
+var dropdown = d3.select("#selDataset");
 
-    // Store the imported data to earthquakesData variable
-    var medicalData = data;
-    // Print the data
-    console.log(medicalData);
+function populateDropdownAndDisplayData(data) {
+    // Create an object to store unique measures
+    const uniqueMeasures = {};
 
-    // Create a object list with the target data columns
-    let newData = [];
-    for (let i = 0; i < medicalData.length; i++) {
-        newData.push({
-            "year": medicalData[i].year,
-            "county": medicalData[i].countyname,
-            "state": medicalData[i].statedesc,
-            "totalpopulation": medicalData[i].totalpopulation,
-            "measureid": medicalData[i].measureid,
-            "lat": medicalData[i].geolocation.coordinates[1],
-            "long": medicalData[i].geolocation.coordinates[0],
-            "data_value": medicalData[i].data_value,
-            "data_value_type": medicalData[i].data_value_type,
-        });
-    };
-    console.log(newData);
+    // Loop through the data and populate the unique measures object
+    data.forEach((item) => {
+        let measure = item.measure;
+        uniqueMeasures[measure] = true;
+    });
 
-    let mammouseData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'MAMMOUSE') {
-            mammouseData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(mammouseData);
+    // Get an array of unique measure names
+    const uniqueMeasureNames = Object.keys(uniqueMeasures);
 
-    let chdData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CHD') {
-            chdData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(chdData);
+    // Populate the dropdown with unique measures
+    dropdown.html(""); // Clear existing options before populating
+    uniqueMeasureNames.forEach((measure) => {
+        dropdown.append("option").text(measure).property("value", measure);
+    });
 
-    let dentalData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'DENTAL') {
-            dentalData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(dentalData);
+    // Add event listener to the dropdown to handle selection change
+    dropdown.on("change", function () {
+        const selectedMeasure = this.value;
+        const aggregatedData = aggregateDataByMeasure(data, selectedMeasure);
+        displayDataInDiv(aggregatedData);
+        updateMapMarkers(aggregatedData);
+    });
 
-    let highcholData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'HIGHCHOL') {
-            highcholData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(highcholData);
-
-    let cholscreenData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CHOLSCREEN') {
-            cholscreenData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(cholscreenData);
-
-    let diabetesData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'DIABETES') {
-            diabetesData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(diabetesData);
-
-    let casthmaData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CASTHMA') {
-            casthmaData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(casthmaData);
-
-    let athritisData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'ATHRITIS') {
-            athritisData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(athritisData);
-
-    let obesityData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'OBESITY') {
-            obesityData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(obesityData);
-
-    let strokeData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'STROKE') {
-            strokeData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(strokeData);
-
-    let lpaData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'LPA') {
-            lpaData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(lpaData);
-
-    let cancerData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CANCER') {
-            cancerData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(cancerData);
-
-    let teethlostData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'TEETHLOST') {
-            teethlostData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(teethlostData);
-
-    let bingeData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'BINGE') {
-            bingeData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(bingeData);
-
-    let mhlthData =[];
-    for (let i = 0; i < newData.length; i++) {
-        
-        if (newData[i].measureid == 'MHLTH') {
-            mhlthData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(mhlthData);
-
-    let coremData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'COREM') {
-            coremData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(coremData);
-
-    let access2Data =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'ACCESS2') {
-            access2Data.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(access2Data);
-
-    let phlthData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'PHLTH') {
-            phlthData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(phlthData);
-
-    let sleepData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'SLEEP') {
-            sleepData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(sleepData);
-
-    let cervicalData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CERVICAL') {
-            cervicalData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(cervicalData);
-
-    let checkupData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CHECKUP') {
-            checkupData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(checkupData);
-
-    let depressionData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'DEPRESSION') {
-            depressionData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(depressionData);
-
-    let corewData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'COREW') {
-            corewData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(corewData);
-
-    let bphighData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'BPHIGH') {
-            bphighData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(bphighData);
-
-    let colon_screenData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'COLON_SCREEN') {
-            colon_screenData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(colon_screenData);
-
-    let copdData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'COPD') {
-            copdData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(copdData);
-
-    let csmokingData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'CSMOKING') {
-            csmokingData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(csmokingData);
-
-    let bpmedData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'BPMED') {
-            bpmedData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(bpmedData);
-
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'KIDNEY') {
-            kidneyData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(kidneyData);
-
-    let ghlthData =[];
-    for (let i = 0; i < newData.length; i++) {
-        if (newData[i].measureid == 'GHLTH') {
-            ghlthData.push({
-                "year": newData[i].year,
-                "county": newData[i].county,
-                "state": newData[i].state,
-                "totalpopulation": newData[i].totalpopulation,
-                "measureid": newData[i].measureid,
-                "lat": newData[i].lat,
-                "long": newData[i].long,
-                "data_value": newData[i].data_value,
-                "data_value_type": newData[i].data_value_type,
-            });
-        };
-    };
-    console.log(ghlthData);
-});
+    // Initialize the map with the first measure from the dropdown
+    const initialMeasure = uniqueMeasureNames[0];
+    const initialData = aggregateDataByMeasure(data, initialMeasure);
+    displayDataInDiv(initialData);
+    createMap(initialData);
+}
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Define the API endpoint
-    const apiData = "http://127.0.0.1:5000/api/data";
-    // Initialize the map
-    const map = L.map("map").setView([39.8283, -98.5795], 4); // Set the initial map view to the United States
-    // Add a tile layer to the map (you can use any tile provider you prefer)
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-  
-    // Fetch data from the API
-    fetch(apiData)
-      .then(response => response.json())
-      .then(data => {
-        // Loop through the data and add markers to the map
-        data.forEach(item => {
-          const lat = item.geolocation.coordinates[1];
-          const lon = item.geolocation.coordinates[0];
-          const countyName = item.countyname;
-  
-          // Create a marker for each data point
-          const marker = L.marker([lat, lon]).addTo(map);
-  
-          // Create a popup button with the county name
-          marker.bindPopup(`<b>County: ${countyName}</b>
-          <br />County Population: ${item.totalpopulation}</b>
-          <br />State: ${item.stateabbr}
-          <br />${item.short_question_text} ${item.data_value} ${item.data_value_unit}<b>`);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  });
-    function init(){
+//Add a tile layer to the map (you can use other tile providers if needed)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+function createMap(data) {
+    // Create a map centered on a specific location (e.g., New York City)
+    const map = L.map('map').setView([40.7128, -74.0060], 5);
 
-    };
+    // Add a tile layer to the map (you can use other tile providers if needed)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Initial map markers for the first selected measure
+    createMapMarkers(map, data);
+}
+
+function updateMapMarkers(data) {
+    // Clear existing markers and create new ones for the selected measure
+    const map = L.map('map');
+    map.eachLayer(layer => {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+        }
+    });
+    createMapMarkers(map, data);
+}
+
+function createMapMarkers(map, data) {
+    data.forEach(item => {
+        const { coordinates } = item.geolocation;
+        const { measure, category, data_value, data_value_type, data_value_unit, stateabbr, countyname } = item;
+        const lat = coordinates[1];
+        const lng = coordinates[0];
+
+        // Customize the marker as needed (e.g., popup content)
+        const marker = L.marker([lat, lng]).addTo(map).bindPopup(
+            `<b>${measure}</b><br>${category}<br>Value: ${data_value} ${data_value_type} (${data_value_unit})<br>State: ${stateabbr}<br>County: ${countyname}`
+        );
+    });
+}
+
+
+function aggregateDataByMeasure(data, selectedMeasure) {
+    // Filter the data to get only entries with the selected measure
+    return data.filter((item) => item.measure === selectedMeasure);
+}
+
+function displayDataInDiv(data) {
+    // Select the div where the data will be displayed
+    const displayDiv = d3.select("#dataDisplay");
+
+    // Clear the previous content of the div
+    displayDiv.html("");
+
+    // Create a new paragraph element for each data entry and append it to the div
+    data.forEach((item) => {
+        const paragraph = displayDiv.append("p");
+        paragraph.text(JSON.stringify(item)); // You can format the display as needed
+    });
+}

@@ -4,82 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>American Health Dashboard</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="des.css" />
-  <script src='logic.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <div class="container">
-    <!-- <div class="sidebar">
-      <button class="button" onclick="showContent(1)" style="width: 150px;">HBP</button>
-      <button class="button" onclick="showContent(2)" style="width: 150px;">Diabetes</button>
-      <button class="button" onclick="showContent(3)" style="width: 150px;">Cancer</button>
-      <button class="button" onclick="showContent(4)" style="width: 150px;">Asthma</button>
-      <button class="button" onclick="showContent(5)" style="width: 150px;">Kidney Disease</button>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 jumbotron text-center">
+      <h1>Belly Button Biodiversity Dashboard</h1>
+      <p>Use the interactive charts below to explore the dataset</p>
     </div>
-    <div class="sidebar">
-      <button class="button" onclick="showContent(6)" style="width: 150px;">Obesity</button>
-      <button class="button" onclick="showContent(7)" style="width: 150px;">COPD</button>
-      <button class="button" onclick="showContent(8)" style="width: 150px;">Stroke</button>
-      <button class="button" onclick="showContent(9)" style="width: 150px;">High Cholesterol</button>
-      <button class="button" onclick="showContent(10)" style="width: 150px;">Analysis</button>
-    </div> -->
-    <div id="map-container">
-      <h2>Health Map</h2>
-      <div id="map"></div>
-      <div id="map" style="width: 800px; height: 600px;"></div>
-      <div class="content" id="content">
-        <h2>Metadata for Health Conditions</h2>
-        <p>This section displays the content based on the clicked button.</p>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="well">
+        <h5>Please Select a Condition:</h5>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select>
       </div>
-      <script>
-        function showContent(buttonId) {
-          let contentDiv = document.getElementById("content");
-          switch (buttonId) {
-            case 1:
-              contentDiv.innerHTML = "<h2>Button 1 Content</h2><p>This is the content of Button 1This is the content of Button 1This is the content of Button 1This is the content of Button 1This is the content of Button 1This is the content of Button 1This is the content of Button 1This is the content of Button 1.</p>";
-              break;
-            case 2:
-              contentDiv.innerHTML = "<h2>Button 2 Content</h2><p>This is the content of Button 2This is the content of Button 2This is the content of Button 2This is the content of Button 2This is the content of Button 2This is the content of Button 2This is the content of Button 2.</p>";
-              break;
-            case 3:
-              contentDiv.innerHTML = "<h2>Button 3 Content</h2><p>This is the content of Button 3.</p>";
-              break;
-            case 4:
-              contentDiv.innerHTML = "<h2>Button 4 Content</h2><p>This is the content of Button 4.</p>";
-              break;
-            case 5:
-              var out1 = "";
-              kidneyData.forEach(r => {
-                for (let j in r) {
-                                    out1 = r["year"]+"   "+ r["county"]+r["state"]+"</br>";
-                }
-              })
-              contentDiv.innerHTML = out1 + "<h2>Button 5 Content</h2><p>This is the content of Button 5.</p>";
-              break;
-            case 6:
-              contentDiv.innerHTML = "<h2>Button 6 Content</h2><p>This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6This is the content of Button 6.</p>";
-              break;
-            case 7:
-              contentDiv.innerHTML = "<h2>Button 7 Content</h2><p>This is the content of Button 7.</p>";
-              break;
-            case 8:
-              contentDiv.innerHTML = "<h2>Button 8 Content</h2><p>This is the content of Button 8.</p>";
-              break;
-            case 9:
-              contentDiv.innerHTML = "<h2>Button 9 Content</h2><p>This is the content of Button 9.</p>";
-              break;
-            case 10:
-              contentDiv.innerHTML = "<h2>Button 10 Content</h2><p>This is the content of Button 10This is the content of Button 10This is the content of Button 10This is the content of Button 10This is the content of Button 10.</p>";
-              break;
-            default:
-              contentDiv.innerHTML = "<h2>Default Content</h2><p>This content is displayed when no button is clicked.</p>";
-              break;
-          }
-        }
-      </script>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Demographic Info</h3>
+        </div>
+        <div id="dataDisplay" class="panel-body"></div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div id="bar"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="gauge"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="bubble"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="map" style="height: 400px;"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="logic.js"></script>
+
 </body>
 </html>

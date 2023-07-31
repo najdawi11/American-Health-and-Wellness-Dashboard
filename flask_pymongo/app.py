@@ -22,12 +22,8 @@ def get_data():
     # Fetch data from MongoDB
     data = list(collection.find({}))  # Retrieve all documents from the 'data1' collection
 
-
-    # Return data as JSON using bson.json_util.dumps()
-    
+    # Return data as JSON using bson.json_util.dumps() 
     return json_util.dumps(data)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
