@@ -63,11 +63,11 @@ function updateMapMarkers(data) {
 function createMapMarkers(data) {
     data.forEach(item => {
         const { coordinates } = item.geolocation;
-        const { measure, statedesc, countyname, category, data_value, data_value_type, data_value_unit } = item;
+        const { measure, statedesc, countyname, category, data_value, data_value_unit } = item;
         const lat = coordinates[1];
         const lng = coordinates[0];
         const marker = L.marker([lat, lng]).addTo(map).bindPopup(
-            `<b>${measure}</b><br>${category}<br><br>Value: ${data_value} ${data_value_type} (${data_value_unit}<br><br>${countyname}<br><br>${statedesc}<br>`
+            `<b>${measure}</b><br>${category}<br><br>Value: ${data_value} (${data_value_unit})<br><br>${countyname}<br><br>${statedesc}<br>`
         );
     });
 }
@@ -103,6 +103,12 @@ function createPieChart(data) {
     data.sort((a, b) => b.data_value - a.data_value);
     const topFiveData = data.slice(0, 5);
     const data_ready = pie(topFiveData);
+
+    // Define the color scale
+    const color = d3.scaleOrdinal()
+        .domain(data_ready.map(d => d.data.countyname))
+        .range(d3.schemeCategory10);
+
     const arcGenerator = d3.arc()
         .innerRadius(0)
         .outerRadius(radius);
@@ -111,19 +117,42 @@ function createPieChart(data) {
         .enter()
         .append('path')
         .attr('d', arcGenerator)
-        .attr('fill', '#69b3a2')
+        // use the color scale
+        .attr('fill', d => color(d.data.countyname))
         .attr("stroke", "black")
         .style("stroke-width", "2px")
         .style("opacity", 0.7);
-    svg.selectAll('mySlices')
+
+    const textOffset = 14;
+    const slices = svg.selectAll('mySlices')
         .data(data_ready)
-        .enter()
-        .append('text')
-        .text(function(d) { return d.data.countyname + "(" + d.data.statedesc + ")" + " (" + d.data.data_value + ")" })
-        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+        .enter();
+
+    // Create one text element for the county name
+    slices.append('text')
+        .text(d => d.data.countyname)
+        .attr("transform", d => "translate(" + arcGenerator.centroid(d) + ")")
+        .attr("dy", -textOffset) // offset by 14 upwards
         .style("text-anchor", "middle")
-        .style("font-size", 10);
+        .style("font-size", 15);
+
+    // Create a separate text element for the state description
+    slices.append('text')
+        .text(d => d.data.statedesc)
+        .attr("transform", d => "translate(" + arcGenerator.centroid(d) + ")")
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
+
+    // Create a separate text element for the data value
+    slices.append('text')
+        .text(d => d.data.data_value)
+        .attr("transform", d => "translate(" + arcGenerator.centroid(d) + ")")
+        .attr("dy", textOffset) // offset by 14 downwards
+        .style("text-anchor", "middle")
+        .style("font-size", 15);
 }
+
+
 
 function aggregateDataByState(data, selectedMeasure) {
     let stateCounts = {};
