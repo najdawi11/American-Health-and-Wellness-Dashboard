@@ -3,6 +3,8 @@
 **Repo Link: ** 
 https://najdawi11.github.io/American-Health-and-Wellness-Dashboard/
 
+**Presentation Link** 
+https://docs.google.com/presentation/d/1ZpyTIlHhz-p3I2gepi-kd7BE4CDDIp6XGTVjzn1Y-7g/edit?usp=sharing
 
 **Group 4 Proposal (American Health and Wellness Dashboard)**
 
