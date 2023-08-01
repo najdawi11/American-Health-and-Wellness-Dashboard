@@ -28,8 +28,14 @@ The primary goal of this project is to map and analyze healthcare-related data a
  4. Support Healthcare Policy Development: Provide evidence-based insights to inform policymakers and stakeholders about the pressing need for healthcare reforms and resource allocation to address the identified gaps.
 
 **Tech Stack:**
+MongoDB
+Flask API
 
-
+**Languages**
+Python
+HTML
+Javascript
+CSS with Bootstrap
 
 **Role Assignments:**
 
